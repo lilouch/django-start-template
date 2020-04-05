@@ -46,7 +46,7 @@ class Base(Configuration):
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
     ]
 
-    ROOT_URLCONF = 'django_start_template.urls'
+    ROOT_URLCONF = "{{ project_name }}.urls"
 
     TEMPLATES = [
         {
@@ -66,7 +66,7 @@ class Base(Configuration):
         },
     ]
 
-    WSGI_APPLICATION = 'django_start_template.wsgi.application'
+    WSGI_APPLICATION = '{{ project_name }}.wsgi.application'
 
 
     # Database
