@@ -167,6 +167,176 @@ body {
 	border-bottom: 0;
 }
 
+.sidebar_header a,
+.sidebar_header a:hover {
+    color: #666!important;
+    text-decoration: none
+}
+
+.sidebar {
+    width: 180px;
+    height: 100%;
+    float: left;
+    border: 0 dashed #000;
+    margin-left: 7%
+}
+.prettyprint::-webkit-scrollbar {
+    display: none!important
+}
+@media screen and (max-width: 50em) {
+    .divide_line.documentation {
+        width: 100%!important
+    }
+    .center-content {
+        width: 90%!important
+    }
+    .sidebar.on_mobile {
+        display: block;
+        margin: 0 auto!important;
+        width: 100%!important
+    }
+    .sidebar_nav.on_mobile {
+        padding-left: 0!important
+    }
+    .sidebar_nav.on_mobile li {
+        background: rgba(0, 0, 0, .05);
+        width: 100%!important;
+        padding: 5px 0 3px!important;
+        margin-left: 0!important
+    }
+}
+.sidebar_nav {
+    list-style: none;
+    text-align: left
+}
+.sidebar_header a {
+    font-weight: 400
+}
+.sidebar_nav li {
+    width: 185px;
+    height: 20px;
+    margin-left: -40px;
+    padding: 5px 0 3px 10px;
+    text-align: left!important
+}
+.sidebar_link.double {
+    line-height: 18px;
+    padding: 5px 0 20px 10px
+}
+.sidebar.documentation {
+    margin-left: 0!important
+}
+.sidebar_link.selected {
+    background: rgba(0, 0, 0, .05);
+    border: 0 solid #a5a5a5
+}
+.sidebar_nav li:hover {
+    background: rgba(0, 0, 0, .05)!important
+}
+.contact_us_option a {
+    text-decoration: none;
+    color: #666;
+    font-weight: 500
+}
+.sidebar_nav .contact_us_option:hover,
+.sidebar_nav .sidebar_header:hover {
+    background: #fff!important
+}
+@media screen and (max-width: 50em) {
+    .sidebar_link.selected {
+        background: rgba(0, 0, 0, .1)!important;
+        border: 0 solid #a5a5a5;
+        border-radius: 0;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0
+    }
+    .sidebar_nav li:hover {
+        background: rgba(0, 0, 0, .1)!important;
+        border-radius: 0;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        padding: 5px 0 3px!important
+    }
+    .sidebar_nav .sidebar_header:hover {
+        background: rgba(0, 0, 0, .05)!important
+    }
+}
+.sidebar_link a {
+    text-decoration: none;
+    font-size: 13px
+}
+
+.doc_menu_box li.sidebar_header {
+    background: #f9f9f9!important
+}
+.doc_menu_box li.sidebar_link.last {
+    border-bottom: 1px solid #e1e1e1;
+    height: 35px
+}
+.doc_menu_box li.sidebar_header .doc_inner {
+    padding: 14px 0;
+    width: 100%!important
+}
+.doc_menu_box.github li.sidebar_header .doc_inner {
+    padding: 14px 29px;
+    width: 70%!important;
+    background: url(../images/assets/github_x2.png) 11px 12px no-repeat;
+    background-size: 20px!important
+}
+.doc_menu_box li.sidebar_header .doc_inner.less {
+    padding: 13px 0
+}
+.doc_menu_box li.sidebar_header .doc_inner span.helvetica {
+    padding-left: 12px;
+    color: #333
+}
+.doc_menu_box li.sidebar_header a.orange .doc_inner span.helvetica {
+    color: #e56a0a!important;
+    font-weight: 500
+}
+.doc_menu_box li.sidebar_link .doc_inner span.helvetica {
+    padding-left: 12px;
+    color: #222;
+    font-weight: 400
+}
+.doc_menu_box li.sidebar_link .doc_inner {
+    padding: 9px 0;
+    width: 100%!important
+}
+.doc_menu_box li.sidebar_header .doc_inner a {
+    color: #141823!important;
+    padding: 16px 12px;
+    white-space: nowrap
+}
+.doc_menu_box li.sidebar_link .doc_inner a {
+    color: #1975B3!important;
+    padding: 5px 12px;
+    font-weight: 500!important
+}
+.doc_menu_box li.sidebar_header,
+.doc_menu_box li.sidebar_link {
+    width: 100%!important;
+    padding: 0!important;
+    border-right: 1px solid #e1e1e1;
+    border-left: 1px solid #e1e1e1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+.doc_menu_box li.sidebar_header {
+    height: 46px;
+    border-bottom: 1px solid #e1e1e1;
+    border-top: 1px solid #e1e1e1
+}
+.doc_menu_box.github li.sidebar_header {
+    background: #f9f9f9
+}
+.doc_menu_box li.sidebar_link {
+    height: 35px;
+    background: #fff
+}
+.doc_menu_box li.sidebar_header.selected {
+    background: #fff!important
+}
 
 footer{
   text-align: center;padding: 50px 0;
