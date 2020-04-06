@@ -1,39 +1,247 @@
-/* Required height of parents of the Half Page Carousel for proper displaying carousel itself */
-html,
-body,
-.view {
-  height: 100%; }
 
-@media (max-width: 740px) {
-  .full-page-intro {
-    height: 1000px; } }
+html {
+  position: relative;
+  min-height: 100%;
+}
 
-/* Half Page Carousel itself*/
-.carousel {
-  height: 50%; }
-  .carousel .carousel-inner {
-    height: 100%; }
-    .carousel .carousel-inner .carousel-item,
-    .carousel .carousel-inner .active {
-      height: 100%; }
+body {
+    background: #EFEFEF;
+    font-family: "Open Sans","Gill Sans MT","Gill Sans",Corbel,Arial,sans-serif !important;
+    font-size: 14px;
+    font-weight: 400;
+    text-rendering: unset !important;
+    -webkit-font-smoothing: unset !important;
+    -moz-osx-font-smoothing: unset !important;
+    color: #333333;
+      /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.content_container.real_dashboard p {
+    font-family: "Open Sans","Gill Sans MT","Gill Sans",Corbel,Arial,sans-serif !important;
+}
+.container{
+    margin-right:auto;
+    margin-left:auto;
+    padding-left:15px;
+    padding-right:15px;
+    width:1170px
+}
 
-/* Adjustment for mobile devices*/
-@media (max-width: 776px) {
-  .carousel {
-    height: 100%; } }
+.content_container.real_dashboard p {
+  font-family: "Open Sans", "Gill Sans MT", "Gill Sans", Corbel, Arial,
+    sans-serif !important;
+}
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 1170px;
+}
 
-/* Navbar animation */
-.navbar {
-  background-color: rgba(0, 0, 0, 0.2); }
+.header .logo img {
+  height: 35px;
+  display: inline-block;
+  margin-right: 10px;
+  top: 15px;
+  position: relative;
+}
+.header .logo {
+  float: left;
+  padding-left: 15px;
+}
+.header {
+  right: 0;
+  left: 0;
+  border-radius: 0;
+  top: 0;
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  height: 70px;
+  background: #184157;
+}
+.header ul {
+  margin: 0;
+  float: right;
+  padding-left: 0;
+  list-style: none;
+}
+.header ul:after,
+.header ul:before {
+  content: " ";
+  display: table;
+}
+.header ul > li,
+.header ul > li > a {
+  display: block;
+  position: relative;
+}
+.header ul > li {
+  float: left;
+}
+.header ul > li > a {
+  color: #333;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 35px;
+  margin: 16px 15px 19px;
+  font-family: Promo, Helvetica, Arial, sans-serif;
+  text-decoration: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.header.light ul > li > a {
+  color: #fff;
+}
+.header ul > li.status > a:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  display: inline-block;
+  background-color: #47c652;
+  position: relative;
+  top: 1px;
+  left: -6px;
+  margin-left: 4px;
+}
+.header ul > li.status > a {
+  padding: 0 10px 1px;
+  border-radius: 3px;
+  background: transparent;
+  margin-right: 0;
+  margin-left: 6px;
+}
+.header ul > li.action > a {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0 10px;
+  border-radius: 3px;
+  margin-right: 0;
+}
+.header ul > li.action.login > a {
+  padding: 0 10px 1px;
+}
+.header ul > li.action.cta > a {
+  background: #ff6a2e;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 0 10px 1px;
+  margin-right: 0;
+}
+.header.light ul > li.login > a,
+.header ul > li.go_to_dashboard > a {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+.header .logo a {
+  font-family: "Roboto Mono", Helvetica, Arial, sans-serif;
+  color: #333;
+  font-weight: 500 !important;
+  float: left;
+  font-size: 24px;
+  line-height: normal;
+  margin-left: -15px;
+  text-decoration: initial;
+  margin-top: 1px;
+}
+.header.light .logo a {
+  color: #fff;
+}
+.header a:hover {
+  text-decoration: underline;
+}
 
-.top-nav-collapse {
-  background-color: #1C2331; }
+.strip-alt.dashboard {
+    margin-top: 70px;
+}
+.doc_heading,
+.doc_subheading,
+.login_button_container {
+	-webkit-font-smoothing: unset !important;
+    -moz-osx-font-smoothing: unset !important;
+}
+.strip {
+	border-bottom: 0;
+}
 
-/* Adding color to the Navbar on mobile */
-@media only screen and (max-width: 768px) {
-  .navbar {
-    background-color: #1C2331; } }
 
-/* Footer color for sake of consistency with Navbar */
-.page-footer {
-  background-color: #1C2331; }
+footer{
+  text-align: center;padding: 50px 0;
+  background: #184157;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  font-size: 14px;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+footer .right_side,footer ul{
+    display:inline-block;
+    text-align:left;
+    width:150px
+}
+footer ul{
+    list-style:none;
+    padding:0;
+    margin:0
+}
+footer ul li{
+    line-height: 30px;
+}
+footer ul li.heading{
+    color: rgba(255,255,255,.34);
+    margin-bottom: 10px;
+    font-family: Promo,Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+footer ul li a{
+    text-decoration:  none;
+    font-weight: normal !important;
+    color: #fff;
+    cursor: pointer;
+}
+footer ul li a:hover{
+    text-decoration:  underline;
+    color: #fff;
+}
+footer .right_side{
+    margin-left: 100px;
+    font-size: 12px;
+    position: relative;
+    top: 3px;
+    vertical-align: top;
+    width: 250px;
+}
+footer .right_side img.logo{
+    margin-bottom: 72px;
+    height: 35px;
+}
+footer .right_side img{
+	height: 40px;
+    display: block;
+}
+footer .right_side span {
+    font-size: 12px;
+    color: rgba(255,255,255,.5);
+}
+footer .right_side span{
+    font-size: 12px;
+    display: block;
+}
+footer .right_side span a {
+    color: inherit;
+}
+footer p{
+    border-top:1px solid rgba(0,0,0,.1);
+    margin-top:40px;
+    padding-top:10px;
+    font-size:13px;
+    margin-bottom:0
+}

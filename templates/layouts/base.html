@@ -1,70 +1,71 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html>
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Sentive Admin</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <head>
-      <meta charset="utf-8" />
-      <meta http-equiv="x-ua-compatible" content="ie=edge" />
-      <title>Sentive Admin</title>
-      <meta name="description" content="" />
-      <meta name="keywords" content="" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="" type="image/x-icon" />
 
-      <link rel="icon" href="" type="image/x-icon" />
-
-      {% include 'includes/css.html' %}
-    </head>
-
-    <!-- Specific Page CSS goes HERE -->
-    {% block stylesheets %}{% endblock stylesheets %}
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-
-    {% if title %}
-    <title>Admin - {{ title }}</title>
-    {% else %}
-    <title>Admin-</title>
-    {% endif %}
-
-    <style></style>
+    {% include 'includes/css.html' %}
   </head>
 
-  <body class="app">
-    <!-- @App Content -->
-    <!-- =================================================== -->
-    <div>
-      {% include 'includes/header.html' %}
-      <!-- #Main ============================ -->
-      <!--Main layout-->
-      <main>
-        <div class="container">
-          <div class="row">
-            <div class="col-md-8">
-              {% if messages %} {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-              </div>
-              {% endfor %} {% endif %}
+  <!-- Specific Page CSS goes HERE -->
+  {% block stylesheets %}{% endblock stylesheets %}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+  {% if title %}
+  <title>Admin - {{ title }}</title>
+  {% else %}
+  <title>Admin-</title>
+  {% endif %}
+
+  <style></style>
+</head>
+
+<body class="">
+  <!-- @App Content -->
+  <!-- =================================================== -->
+
+  <div>
+    {% include 'includes/header.html' %}
+    <!-- #Main ============================ -->
+    <!--Main layout-->
+    <main class="mt-10">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            {% if messages %} {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+              {{ message }}
             </div>
+            {% endfor %} {% endif %}
           </div>
-          {% block content %}{% endblock content %}
         </div>
-      </main>
-      <!--Main layout-->
+        {% block content %}{% endblock content %}
+      </div>
+    </main>
+    <!--Main layout-->
 
-      {% include 'includes/footer.html' %} {% include
-      'includes/scripts-footer.html' %}
+    {% include 'includes/footer.html' %}
+    {% include 'includes/scripts-footer.html' %}
 
-      <!-- Specific Page JS goes HERE -->
-      {% block javascripts %}{% endblock javascripts %}
-    </div>
-  </body>
+    <!-- Specific Page JS goes HERE -->
+    {% block javascripts %}{% endblock javascripts %}
+  </div>
+</body>
+
 </html>

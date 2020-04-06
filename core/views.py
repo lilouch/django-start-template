@@ -6,3 +6,7 @@ from django.http import HttpResponseRedirect
 
 def home(request):
 	return render(request, 'core/index.html')
+
+
+def dashboard(request):
+	return render(request, 'core/dashboard.html')

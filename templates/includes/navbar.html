@@ -1,53 +1,35 @@
-
-
-    <!-- Navbar -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
-      <div class="container">
-
-        <!-- Brand -->
-        <a class="navbar-brand" href="" target="_blank">
-          <strong>Sentive AI </strong>
-        </a>
-
-        <!-- Collapse -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Links -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-          <!-- Left -->
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href=" target="_blank">About Sentive</a>
-            </li>
-          </ul>
-
-          <!-- Right -->
-          <ul class="navbar-nav nav-flex-icons">
-              <li class="nav-item">
-              <a href="" class="nav-link border border-light rounded"
-                target="_blank">
-                <i class="fas fa-user mr-2"></i>Login
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link border border-light rounded"
-                target="_blank">
-                <i class="fas fa-user mr-2"></i>Sign Up
-              </a>
-            </li>
-          </ul>
-
-        </div>
-
+<div class="mb-3">
+  <nav class="nav header light">
+    <div class="container">
+      <div class="logo">
+        <a title="Sentive Logo" href="/"><img draggable="false" alt="Sentive Logo" src="" /></a>
       </div>
-    </nav>
-    <!-- Navbar -->
+      <a class="navbar-brand" href="" target="">
+        <strong>Sentive AI </strong>
+      </a>
+      <span data-header-toggle="true" class="mobile_menu_icon"></span>
+      <ul>
+        <li><a title="Home" href="">Home</a></li>
+        <li>
+          <a title="API Documentation" href="">Documentation</a>
+        </li>
+        <li><a title="Frequently Asked Questions" href="">FAQ</a></li>
+        {% if request.user.is_authenticated%}
+        <li class="action go_to_dashboard">
+          <a title="Go to dashboard" href="{% url 'core:dashboard'%}">Dashboard</a>
+        </li>
+        <li class="action login">
+          <a title="Log out to your account" href="{% url 'account_logout' %}">Log out</a>
+        </li>
+        {% else %}
+        <li class="action login">
+          <a title="Log in to your account" href="{% url 'account_login' %}">Log In</a>
+        </li>
+        <li class="action cta">
+          <a title="Start using the API" href="{% url 'account_signup' %}">Sign Up Free</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+</div>

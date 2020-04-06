@@ -21,7 +21,6 @@ class Base(Configuration):
 
     ALLOWED_HOSTS = []
 
-
     # Application definition
 
     INSTALLED_APPS = [
@@ -32,12 +31,15 @@ class Base(Configuration):
         'django.contrib.messages',
         'django.contrib.staticfiles',
         'django.contrib.sites',
+        'crispy_forms',
+
+
         'allauth',
         'allauth.account',
         'allauth.socialaccount',
-        'crispy_forms',
-        'app',
-        'users',
+
+        'core',
+        'user',
     ]
 
     MIDDLEWARE = [
@@ -72,7 +74,6 @@ class Base(Configuration):
 
     WSGI_APPLICATION = 'sentive_saas.wsgi.application'
 
-
     # Database
     # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -82,7 +83,6 @@ class Base(Configuration):
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-
 
     # Password validation
     # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -102,7 +102,6 @@ class Base(Configuration):
         },
     ]
 
-
     # Internationalization
     # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -115,7 +114,6 @@ class Base(Configuration):
     USE_L10N = True
 
     USE_TZ = True
-
 
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/3.0/howto/static-files/
@@ -132,12 +130,12 @@ class Base(Configuration):
 
     CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-    LOGIN_REDIRECT_URL = 'home'
+    LOGIN_REDIRECT_URL = 'dashboard'
     LOGIN_URL = 'login'
 
     CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-        # Authentification
+    # Authentification
     AUTHENTICATION_BACKENDS = (
         # Needed to login by username in Django admin, regardless of `allauth`
         'django.contrib.auth.backends.ModelBackend',
@@ -145,8 +143,11 @@ class Base(Configuration):
         'allauth.account.auth_backends.AuthenticationBackend',
     )
 
+    AUTH_USER_MODEL = "user.User"
+
     SITE_ID = 1
 
+    ACCOUNT_EMAIL_VERIFICATION = 'none'
     LOGIN_REDIRECT_URL = '/'
 
 
@@ -171,7 +172,6 @@ class Dev(Base):
     STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY', default='')
 
 
-
 class Prod(Base):
     """
     The in-production settings.
@@ -179,5 +179,4 @@ class Prod(Base):
     DEBUG = False
     ALLOWED_HOSTS = ['http://domain.com']
     TEMPLATE_DEBUG = DEBUG
-
 
