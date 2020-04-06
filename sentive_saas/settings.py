@@ -50,7 +50,7 @@ class Base(Configuration):
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
     ]
 
-    ROOT_URLCONF = "project_name.urls"
+    ROOT_URLCONF = "sentive_saas.urls"
 
     TEMPLATES = [
         {
@@ -70,7 +70,7 @@ class Base(Configuration):
         },
     ]
 
-    WSGI_APPLICATION = 'project_name.wsgi.application'
+    WSGI_APPLICATION = 'sentive_saas.wsgi.application'
 
 
     # Database
