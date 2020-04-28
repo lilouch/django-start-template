@@ -12,39 +12,26 @@
         <h1>Dashboard</h1>
         <div class="page-container">
 
-            <aside id="sidebar" class="sidebar documentation">
-                <ul class="sidebar_nav documentation new">
+            <div style="margin: 0 auto; width: 990px">
+                <form method="post" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                     {{ form.as_p }}
+                   <button type="submit">Submit New Post</button>
+                </form>
+                <br>
+                <br>
+                <h2>{{ origin_name }} (original)</h2>
+                {% if origin_name %}
+                <img src="{{ MEDIA_URL }}{{ origin_name }}">
+                {% endif %}
+                <br>
+                <br>
+                <h2>{{ thumb_name }} (150x150)</h2>
+                {% if thumb_name %}
+                <img src="{{ MEDIA_URL }}{{ thumb_name }}">
+                {% endif %}
+            </div>
 
-                    <section class="doc_menu_box controlpanel">
-
-                        <li class="sidebar_header selected"><a href="/dashboard">
-                                <div class="doc_inner"><span class="helvetica">Dashboard</span></div>
-                            </a></li>
-
-                        <br>
-
-                        <li class="sidebar_header no_border_top"><a href="/account">
-                                <div class="doc_inner"><span class="helvetica">Account</span></div>
-                            </a></li>
-
-                        <li class="sidebar_header no_border_top"><a href="/usage">
-                                <div class="doc_inner"><span class="helvetica">API Usage</span></div>
-                            </a></li>
-
-                    </section>
-
-                    <br>
-
-                    <section class="doc_menu_box">
-
-                        <li class="sidebar_header"><a href="/signout">
-                                <div class="doc_inner less"><span class="helvetica fw_500">Sign Out</span></div>
-                            </a></li>
-
-                    </section>
-
-                </ul>
-            </aside>
         </div>
     </div>
 </div>

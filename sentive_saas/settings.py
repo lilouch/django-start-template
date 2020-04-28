@@ -9,7 +9,6 @@ class Base(Configuration):
     # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-    print("BASE DIR : ", BASE_DIR)
     # Quick-start development settings - unsuitable for production
     # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -32,7 +31,7 @@ class Base(Configuration):
         'django.contrib.staticfiles',
         'django.contrib.sites',
         'crispy_forms',
-
+        'imagekit',
 
         'allauth',
         'allauth.account',
@@ -44,6 +43,7 @@ class Base(Configuration):
 
     MIDDLEWARE = [
         'django.middleware.security.SecurityMiddleware',
+        'whitenoise.middleware.WhiteNoiseMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
@@ -125,8 +125,8 @@ class Base(Configuration):
         os.path.join(BASE_DIR, "static"),
     )
 
+    MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-    MEDIA_URL = os.path.join(BASE_DIR, '/media/')
 
     CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -143,7 +143,7 @@ class Base(Configuration):
         'allauth.account.auth_backends.AuthenticationBackend',
     )
 
-    AUTH_USER_MODEL = "user.User"
+    AUTH_USER_MODEL = "core.User"
 
     SITE_ID = 1
 
@@ -177,6 +177,5 @@ class Prod(Base):
     The in-production settings.
     """
     DEBUG = False
-    ALLOWED_HOSTS = ['http://domain.com']
+    Base.ALLOWED_HOSTS += ['92.243.19.37']
     TEMPLATE_DEBUG = DEBUG
-
