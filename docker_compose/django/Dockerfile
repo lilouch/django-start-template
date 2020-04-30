@@ -17,4 +17,6 @@ EXPOSE 8000
 
 # copy project
 ADD . ${APP_ROOT}
-CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "sentive_saas.wsgi:application"]
+#CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "sentive_saas.wsgi:application"]
+#CMD python manage.py makemigrations;python manage.py migrate;gunicorn sentive_saas.wsgi -b 0.0.0.0:8000
+CMD ["sh", "-c", "python manage.py collectstatic --no-input; python manage.py migrate; gunicorn sentive_saas.wsgi -b 0.0.0.0:8000"]

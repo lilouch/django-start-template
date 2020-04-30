@@ -8,13 +8,15 @@ services:
   db:
     restart: always
     image: postgres:12
-    networks:
-      - sentive_saas
     #HOST:CONTAINER
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql
+    env_file:
+      - config/db/db_env
+    networks:
+      - sentive_saas
 
   nginx:
     build: ./docker_compose/nginx
@@ -31,20 +33,17 @@ services:
       - sentive_saas
 
   django-web:
-    build: .
+    build: ./app/
     container_name: django-web
     restart: always
-    #command: bash -c 'python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:443'
-    command: gunicorn --workers=2 sentive_saas.wsgi:application --bind 0.0.0.0:443
+    command: bash -c 'python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:443'
+    #command: gunicorn --workers=2 sentive_saas.wsgi:application --bind 0.0.0.0:443
     networks:
       - sentive_saas
     expose:
       - "443"
-    environment:
-      - DJANGO_SETTINGS_MODULE=sentive_saas.settings
-      - DJANGO_CONFIGURATION=Dev
-      - PRODUCTION=false
-      - PYTHONUNBUFFERED=TRUE
+    env_file:
+      - config/django/django_env
     stdin_open: true
     tty: true
     depends_on:
