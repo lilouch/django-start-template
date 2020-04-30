@@ -1,0 +1,12 @@
+#./sentive_saas/docker-compose.yml
+version: "3.7"
+
+services:
+  web:
+    build: .
+    command: bash -c 'python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000'
+    container_name: sentive_saas
+    ports:
+      - "4000:8000"
+    stdin_open: true
+    tty: true
