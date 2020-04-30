@@ -1,12 +1,54 @@
 #./sentive_saas/docker-compose.yml
 version: "3.7"
 
+volumes:
+  postgres_data:
+
 services:
-  web:
-    build: .
-    command: bash -c 'python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000'
-    container_name: sentive_saas
+  db:
+    restart: always
+    image: postgres:12
+    networks:
+      - sentive_saas
+    #HOST:CONTAINER
     ports:
-      - "4000:8000"
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+  nginx:
+    build: ./docker_compose/nginx
+    image: nginx
+    container_name: nginx
+    #HOST:CONTAINER
+    #This container will be exposed to the outside world via ports 80 and 443.
+    ports:
+      - "443:443"
+      - "80:80"
+    depends_on:
+      - django-web
+    networks:
+      - sentive_saas
+
+  django-web:
+    build: .
+    container_name: django-web
+    restart: always
+    #command: bash -c 'python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:443'
+    command: gunicorn --workers=2 sentive_saas.wsgi:application --bind 0.0.0.0:443
+    networks:
+      - sentive_saas
+    expose:
+      - "443"
+    environment:
+      - DJANGO_SETTINGS_MODULE=sentive_saas.settings
+      - DJANGO_CONFIGURATION=Dev
+      - PRODUCTION=false
+      - PYTHONUNBUFFERED=TRUE
     stdin_open: true
     tty: true
+    depends_on:
+      - db
+
+networks:
+  sentive_saas:

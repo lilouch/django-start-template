@@ -1,7 +1,9 @@
 import os
 import json
+from django.conf import settings
 from decouple import config, Csv
 from configurations import Configuration, values
+import logging.config
 
 
 class Base(Configuration):
@@ -12,11 +14,7 @@ class Base(Configuration):
     # Quick-start development settings - unsuitable for production
     # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-    # SECURITY WARNING: keep the secret key used in production secret!
-    SECRET_KEY = 'pm-#dv-q0!c)v)2+@bf+xkecs%13m-u8mprx#%@d+nuv1l1x*#'
-
-    # SECURITY WARNING: don't run with debug turned on in production!
-    DEBUG = True
+    SECRET_KEY = config('SECRET_KEY', default='')
 
     ALLOWED_HOSTS = []
 
@@ -73,16 +71,6 @@ class Base(Configuration):
     ]
 
     WSGI_APPLICATION = 'sentive_saas.wsgi.application'
-
-    # Database
-    # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
 
     # Password validation
     # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -151,13 +139,57 @@ class Base(Configuration):
     ACCOUNT_EMAIL_VERIFICATION = 'none'
     LOGIN_REDIRECT_URL = '/'
 
+    
+    # Logging Configuration
+    # Clear prev config
+    LOGGING_CONFIG = None
+
+    # Get loglevel from env
+    LOGLEVEL = os.getenv('DJANGO_LOGLEVEL', 'info').upper()
+
+    logging.config.dictConfig({
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'console': {
+                'format': '%(asctime)s %(levelname)s [%(name)s:%(lineno)s] %(module)s %(process)d %(thread)d %(message)s',
+            },
+        },
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+                'formatter': 'console',
+            },
+        },
+        'loggers': {
+            '': {
+                'level': LOGLEVEL,
+                'handlers': ['console', ],
+            },
+        },
+    })
+
 
 class Dev(Base):
     """
     The in-development settings and the default configuration.
     """
+    DEBUG = True
 
-    ALLOWED_HOSTS = ['127.0.0.1']
+    Base.ALLOWED_HOSTS += ['127.0.0.1', '192.168.99.100']
+    '''
+    DATABASES = {
+        'default': {
+            'ENGINE': config('SQL_DATABASE_ENGINE', default=''),
+            'NAME': config('SQL_DATABASE_NAME_DEV', default=''),
+            'USER': config('SQL_DATABASE_USER_DEV', default=''),
+            'PASSWORD': config('SQL_DATABASE_PASSWORD_DEV', default=''),
+            'HOST': config('SQL_DATABASE_HOST_DEV', default=''),
+            'PORT': config('SQL_DATABASE_PORT_DEV', default=''),
+        }
+    }
+    '''
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -165,12 +197,10 @@ class Dev(Base):
         }
     }
 
-    CORS_ORIGIN_WHITELIST = (
-        'https://localhost:3000',
-    )
-
     STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY', default='')
     STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY', default='')
+
+    SESSION_COOKIE_SECURE = False
 
 
 class Prod(Base):
@@ -178,5 +208,7 @@ class Prod(Base):
     The in-production settings.
     """
     DEBUG = False
-    Base.ALLOWED_HOSTS += ['92.243.19.37']
+    Base.ALLOWED_HOSTS += ['92.243.19.37', '192.168.99.100']
     TEMPLATE_DEBUG = DEBUG
+
+    SESSION_COOKIE_SECURE = False
